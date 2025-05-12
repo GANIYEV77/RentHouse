@@ -5,12 +5,9 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uz.usmon.renthouse.dto.PhotoDto;
 import uz.usmon.renthouse.dto.ProductDto;
-import uz.usmon.renthouse.model.Photo;
 import uz.usmon.renthouse.model.Product;
 import uz.usmon.renthouse.model.Result;
-import uz.usmon.renthouse.service.PhotoService;
 import uz.usmon.renthouse.service.ProductService;
 
 import java.util.List;
