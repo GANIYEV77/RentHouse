@@ -17,27 +17,32 @@ import java.util.List;
 public class CardControllet {
     @Autowired
     CardServise aboutUsService;
+
     @GetMapping
-    public HttpEntity<?> findAll(){
+    public HttpEntity<?> findAll() {
         List<Card> aboutUs = aboutUsService.findAll();
         return new ResponseEntity<>(aboutUs, HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
-    public HttpEntity<?> findById(@PathVariable Integer id){
+    public HttpEntity<?> findById(@PathVariable Integer id) {
         Card aboutUs = aboutUsService.findById(id);
         return new ResponseEntity<>(aboutUs, HttpStatus.OK);
     }
+
     @PostMapping
     public HttpEntity<?> create(@RequestBody CardDto aboutUsDto) {
         Result result = aboutUsService.create(aboutUsDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @PutMapping
-    public HttpEntity<?> update(@PathVariable Integer id , @RequestBody CardDto aboutUsDto) {
+
+    @PutMapping("/{id}")
+    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody CardDto aboutUsDto) {
         Result result = aboutUsService.update(id, aboutUsDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @DeleteMapping
+
+    @DeleteMapping("/{id}")
     public HttpEntity<?> delete(@PathVariable Integer id) {
         aboutUsService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);

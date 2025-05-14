@@ -33,7 +33,7 @@ public class CardServise {
         return new Result(true, "Card created");
     }
 
-    public Result update(Integer id ,CardDto cardDto) {
+    public Result update(Integer id, CardDto cardDto) {
         Optional<Card> card = cardRepo.findById(id);
         if (card.isPresent()) {
             card.get().setNumber(cardDto.getNumber());
@@ -44,6 +44,7 @@ public class CardServise {
         }
         return new Result(false, "Card not found");
     }
+
     public Result delete(Integer id) {
         Optional<Card> card = cardRepo.findById(id);
         if (card.isPresent()) {

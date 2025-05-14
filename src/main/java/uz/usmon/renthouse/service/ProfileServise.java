@@ -24,6 +24,7 @@ public class ProfileServise {
     public Profile findById(Integer id) {
         return profileRepo.findById(id).get();
     }
+
     public Result create(ProfileDto profileDto) {
         Profile profile = new Profile();
         profile.setName(profileDto.getName());
@@ -32,7 +33,8 @@ public class ProfileServise {
         profileRepo.save(profile);
         return new Result(true, "Profile created");
     }
-    public Result update(ProfileDto profileDto , Integer id) {
+
+    public Result update(ProfileDto profileDto, Integer id) {
         Optional<Profile> profile = profileRepo.findById(id);
         if (profile.isPresent()) {
             profile.get().setName(profileDto.getName());
@@ -43,6 +45,7 @@ public class ProfileServise {
         }
         return new Result(false, "Profile not found");
     }
+
     public Result delete(Integer id) {
         Optional<Profile> profile = profileRepo.findById(id);
         if (profile.isPresent()) {

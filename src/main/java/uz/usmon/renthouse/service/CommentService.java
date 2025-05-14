@@ -28,6 +28,7 @@ public class CommentService {
     public Comment findById(Integer id) {
         return commentRepo.findById(id).get();
     }
+
     public Result create(CommentDto commentDto) {
         boolean exists = commentRepo.existsById(commentDto.getProfile_id());
         Comment comment = new Comment();
@@ -41,7 +42,8 @@ public class CommentService {
         comment.setProfile_id(profile1);
         return new Result(true, "Comment created");
     }
-    public Result update(Integer id , CommentDto commentDto) {
+
+    public Result update(Integer id, CommentDto commentDto) {
         Optional<Comment> comment = commentRepo.findById(id);
         if (comment.isPresent()) {
             Comment comment1 = new Comment();

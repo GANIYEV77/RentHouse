@@ -18,9 +18,11 @@ public class PhotoService {
     public List<Photo> findAll() {
         return photoRepo.findAll();
     }
+
     public Photo findById(Integer id) {
         return photoRepo.findById(id).get();
     }
+
     public Result create(PhotoDto photoDto) {
         Photo photo = new Photo();
         photo.setName(photoDto.getName());
@@ -29,7 +31,8 @@ public class PhotoService {
         photoRepo.save(photo);
         return new Result(true, "Photo created");
     }
-    public Result update(Integer id ,PhotoDto photoDto) {
+
+    public Result update(Integer id, PhotoDto photoDto) {
         Optional<Photo> photo = photoRepo.findById(id);
         if (photo.isPresent()) {
             Photo p = photo.get();
@@ -41,6 +44,7 @@ public class PhotoService {
         }
         return new Result(false, "Photo not found");
     }
+
     public Result delete(Integer id) {
         Optional<Photo> photo = photoRepo.findById(id);
         if (photo.isPresent()) {

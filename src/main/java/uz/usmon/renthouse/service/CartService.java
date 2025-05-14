@@ -22,12 +22,13 @@ public class CartService {
     public List<Cart> findAll() {
         return cartRepo.findAll();
     }
+
     public Cart findById(Integer id) {
         return cartRepo.findById(id).get();
     }
 
     public Result create(CartDto cartDto) {
-       boolean exists = cartRepo.existsById(cartDto.getCard_id());
+        boolean exists = cartRepo.existsById(cartDto.getCard_id());
         if (exists) {
             return new Result(false, "Card already exists");
         }
@@ -44,10 +45,10 @@ public class CartService {
         return new Result(true, "Cart created");
     }
 
-    public Result update(Integer id ,CartDto cartDto) {
+    public Result update(Integer id, CartDto cartDto) {
         Optional<Cart> cartOptional = cartRepo.findById(id);
         if (cartOptional.isPresent()) {
-           Cart cart = cartOptional.get();
+            Cart cart = cartOptional.get();
             cart.setProduct(cartDto.getProduct());
             cart.setQuantity(cartDto.getQuantity());
             cart.setTotal_sum(cartDto.getTotal_sum());
@@ -61,6 +62,7 @@ public class CartService {
         }
         return new Result(false, "Cart not found");
     }
+
     public Result delete(Integer id) {
         Optional<Cart> cartOptional = cartRepo.findById(id);
         if (cartOptional.isPresent()) {

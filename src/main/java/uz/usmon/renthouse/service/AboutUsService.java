@@ -36,7 +36,7 @@ public class AboutUsService {
 
     }
 
-    public Result update(Integer id ,AboutUsDto aboutUsDto) {
+    public Result update(Integer id, AboutUsDto aboutUsDto) {
         Optional<AboutUs> aboutUsOptional = aboutUsRepo.findById(id);
         if (aboutUsOptional.isPresent()) {
             AboutUs aboutUs = aboutUsOptional.get();
@@ -47,6 +47,7 @@ public class AboutUsService {
         }
         return new Result(false, "AboutUs not found");
     }
+
     public Result delete(Integer id) {
         Optional<AboutUs> aboutUsOptional = aboutUsRepo.findById(id);
         if (aboutUsOptional.isPresent()) {

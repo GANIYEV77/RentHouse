@@ -15,12 +15,15 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     UserRepo userRepo;
+
     public List<User> findAll() {
         return userRepo.findAll();
     }
+
     public User findById(Integer id) {
         return userRepo.findById(id).get();
     }
+
     public Result create(UserDto userDto) {
         User user = new User();
         user.setName(userDto.getName());
@@ -32,6 +35,7 @@ public class UserService {
         userRepo.save(user);
         return new Result(true, "User created");
     }
+
     public Result update(Integer id, UserDto userDto) {
         Optional<User> user1 = userRepo.findById(id);
         if (user1.isPresent()) {
@@ -47,6 +51,7 @@ public class UserService {
         }
         return new Result(false, "User not found");
     }
+
     public Result delete(Integer id) {
         Optional<User> user = userRepo.findById(id);
         if (user.isPresent()) {

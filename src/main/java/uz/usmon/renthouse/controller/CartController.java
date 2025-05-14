@@ -14,32 +14,38 @@ import uz.usmon.renthouse.service.CardServise;
 import uz.usmon.renthouse.service.CartService;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/api/cart")
 public class CartController {
     @Autowired
     CartService aboutUsService;
+
     @GetMapping
-    public HttpEntity<?> findAll(){
+    public HttpEntity<?> findAll() {
         List<Cart> aboutUs = aboutUsService.findAll();
         return new ResponseEntity<>(aboutUs, HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
-    public HttpEntity<?> findById(@PathVariable Integer id){
+    public HttpEntity<?> findById(@PathVariable Integer id) {
         Cart aboutUs = aboutUsService.findById(id);
         return new ResponseEntity<>(aboutUs, HttpStatus.OK);
     }
+
     @PostMapping
     public HttpEntity<?> create(@RequestBody CartDto aboutUsDto) {
         Result result = aboutUsService.create(aboutUsDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @PutMapping
-    public HttpEntity<?> update(@PathVariable Integer id , @RequestBody CartDto aboutUsDto) {
+
+    @PutMapping("/{id}")
+    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody CartDto aboutUsDto) {
         Result result = aboutUsService.update(id, aboutUsDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @DeleteMapping
+
+    @DeleteMapping("/{id}")
     public HttpEntity<?> delete(@PathVariable Integer id) {
         aboutUsService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);

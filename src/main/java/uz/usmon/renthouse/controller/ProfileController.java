@@ -14,32 +14,38 @@ import uz.usmon.renthouse.service.PhotoService;
 import uz.usmon.renthouse.service.ProfileServise;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/api/profile")
 public class ProfileController {
     @Autowired
     ProfileServise aboutUsService;
+
     @GetMapping
-    public HttpEntity<?> findAll(){
+    public HttpEntity<?> findAll() {
         List<Profile> aboutUs = aboutUsService.findAll();
         return new ResponseEntity<>(aboutUs, HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
-    public HttpEntity<?> findById(@PathVariable Integer id){
+    public HttpEntity<?> findById(@PathVariable Integer id) {
         Profile aboutUs = aboutUsService.findById(id);
         return new ResponseEntity<>(aboutUs, HttpStatus.OK);
     }
+
     @PostMapping
     public HttpEntity<?> create(@RequestBody ProfileDto aboutUsDto) {
         Result result = aboutUsService.create(aboutUsDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @PutMapping
-    public HttpEntity<?> update(@PathVariable Integer id , @RequestBody ProfileDto aboutUsDto) {
+
+    @PutMapping("/{id}")
+    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody ProfileDto aboutUsDto) {
         Result result = aboutUsService.update(aboutUsDto, id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @DeleteMapping
+
+    @DeleteMapping("/{id}")
     public HttpEntity<?> delete(@PathVariable Integer id) {
         aboutUsService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);

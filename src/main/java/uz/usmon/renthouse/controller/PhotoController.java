@@ -20,27 +20,32 @@ import java.util.List;
 public class PhotoController {
     @Autowired
     PhotoService aboutUsService;
+
     @GetMapping
-    public HttpEntity<?> findAll(){
+    public HttpEntity<?> findAll() {
         List<Photo> aboutUs = aboutUsService.findAll();
         return new ResponseEntity<>(aboutUs, HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
-    public HttpEntity<?> findById(@PathVariable Integer id){
+    public HttpEntity<?> findById(@PathVariable Integer id) {
         Photo aboutUs = aboutUsService.findById(id);
         return new ResponseEntity<>(aboutUs, HttpStatus.OK);
     }
+
     @PostMapping
     public HttpEntity<?> create(@RequestBody PhotoDto aboutUsDto) {
         Result result = aboutUsService.create(aboutUsDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @PutMapping
-    public HttpEntity<?> update(@PathVariable Integer id , @RequestBody PhotoDto aboutUsDto) {
+
+    @PutMapping("/{id}")
+    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody PhotoDto aboutUsDto) {
         Result result = aboutUsService.update(id, aboutUsDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @DeleteMapping
+
+    @DeleteMapping("/{id}")
     public HttpEntity<?> delete(@PathVariable Integer id) {
         aboutUsService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);

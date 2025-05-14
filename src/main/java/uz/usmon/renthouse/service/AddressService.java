@@ -18,6 +18,7 @@ public class AddressService {
     public List<Address> findAll() {
         return addressRepo.findAll();
     }
+
     public Address findById(Integer id) {
         return addressRepo.findById(id).get();
     }
@@ -29,7 +30,8 @@ public class AddressService {
         address.setStreet(addressDto.getStreet());
         return new Result(true, "Address created");
     }
-    public Result update(Integer id ,AddressDto addressDto) {
+
+    public Result update(Integer id, AddressDto addressDto) {
         Optional<Address> address = addressRepo.findById(id);
         if (address.isPresent()) {
             address.get().setCity(addressDto.getCity());
@@ -39,6 +41,7 @@ public class AddressService {
         }
         return new Result(false, "Address not found");
     }
+
     public Result delete(Integer id) {
         Optional<Address> address = addressRepo.findById(id);
         if (address.isPresent()) {

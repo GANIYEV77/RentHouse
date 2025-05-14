@@ -20,9 +20,11 @@ public class ProductService {
         return productRepo.findAll();
 
     }
+
     public Product findById(Integer id) {
         return productRepo.findById(id).get();
     }
+
     public Result create(ProductDto productDto) {
         Product product = new Product();
         product.setName(productDto.getName());
@@ -35,7 +37,7 @@ public class ProductService {
         return new Result(true, "Product created");
     }
 
-    public Result update(Integer id , ProductDto productDto) {
+    public Result update(Integer id, ProductDto productDto) {
         Optional<Product> product = productRepo.findById(id);
         if (product.isPresent()) {
             product.get().setName(productDto.getName());
@@ -50,6 +52,7 @@ public class ProductService {
         }
         return new Result(false, "Product not found");
     }
+
     public Result delete(Integer id) {
         Optional<Product> product = productRepo.findById(id);
         if (product.isPresent()) {
